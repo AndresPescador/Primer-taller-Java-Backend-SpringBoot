@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Carritos</title>
+</head>
+<body>
+<h2>Mis carritos</h2>
+<div th:each="cart : ${carts}">
+  <h3>Carrito #[[${cart.id}]] - Fecha: [[${cart.date}]]</h3>
+  <ul>
+    <li th:each="prod : ${cart.products}">
+      Producto ID: [[${prod.productId}]], Cantidad: [[${prod.quantity}]]
+    </li>
+  </ul>
+</div>
+</body>
+</html>
