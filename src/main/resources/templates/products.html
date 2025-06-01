@@ -1,17 +1,93 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
   <title>Productos</title>
-</head>
-<body>
-<h2>Lista de productos</h2>
-<ul>
-  <li th:each="product : ${products}">
-    <strong th:text="${product.title}">Nombre</strong> - $
-    <span th:text="${product.price}">0.0</span>
-  </li>
-</ul>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: white;
+      text-align: center;
+    }
+    header {
+      background-color: #9B42A5;
+      padding: 20px 0;
+      }
+    header h1 {
+      color: white;
+      font-size: 48px;
+    }
+    .contenedor {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+        border: 1px solid #ddd;
+      }
 
-<a th:href="@{'/carts/' + ${userId}}">Ver mis carritos</a>
+    .mitad {
+        flex: 1;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .mitad img {
+        width: 150px;
+        height: 130px;
+        object-fit: cover;
+    }
+    .boton {
+      padding: 20px 16px;
+      background: #D8BFD8;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      margin: 10px 0;
+      float: left;
+
+    }
+  </style>
+
+</head>
+
+<body>
+  <header>
+    <h1>STORE PRODUCTS</h1>
+  </header>
+  <button class="boton">
+  <a th:href="@{'/carts/' + ${userId}}">Ver mis carritos</a></button>
+  <ul>
+    <li th:each="product : ${products}">
+      <div>
+        ID:
+        <span th:text="${product.id}">0.0</span><br>
+        <strong th:text="${product.title}">Nombre</strong>
+      </div>
+      <div>
+        - $
+        <span th:text="${product.price}">0.0</span>
+      </div>
+      <div class="contenedor">
+        <div class="mitad img">
+          <img th:src="${product.image}"
+               alt="Imagen del producto"
+               class="product-image"
+               onerror="this.src='Imagen no disponible'">
+        </div>
+        <div class="mitad ">
+          <strong th:text="${product.description}">Descripcion</strong>
+        </div>
+      </div>
+    </li>
+
+  </ul>
+
+
 </body>
 </html>
